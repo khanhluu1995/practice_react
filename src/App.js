@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import ExpenseItem from './components/Expenses/ExpenseItem'
 import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
+import {useState} from "react";
 
 const App = () => {
     const expenses = [
@@ -20,9 +22,24 @@ const App = () => {
             price: 14
         }
     ]
+
+    const [newExpenses, setNewExpenses] = useState(expenses)
+
+
+    const onNewExpenseData = (enteredExpenseData) =>{
+        const expenseData = {
+            ...enteredExpenseData
+        }
+
+        expenses.push(expenseData)
+        setNewExpenses(expenses)
+
+        console.log('current array', expenses)
+    }
     return(
         <div className="App">
-            <Expenses  items={expenses}></Expenses>
+            <NewExpense onNewExpenseData={onNewExpenseData}/>
+            <Expenses  items={newExpenses}/>
         </div>
     )
 
