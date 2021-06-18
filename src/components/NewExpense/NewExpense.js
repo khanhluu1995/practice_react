@@ -13,6 +13,10 @@ const NewExpense = (props) => {
         enteredPrice:''
     })
 
+    const [showNewExpense, setShowNewExpense] = useState(false)
+
+
+
     const titleChangeHandler = (event) => {
         setUserInputs((prevState)=>{
             return{
@@ -40,6 +44,11 @@ const NewExpense = (props) => {
         })
     }
 
+    const toggleNewExpense = (event) => {
+        event.preventDefault()
+        setShowNewExpense(!showNewExpense)
+    }
+
     const submitHandler = (event) => {
         event.preventDefault()
         const expenseData = {
@@ -56,8 +65,16 @@ const NewExpense = (props) => {
             }
         })
         props.onNewExpenseData(expenseData)
+        setShowNewExpense(false)
     }
 
+    if (showNewExpense === false) {
+        return (
+            <div className='new-expense'>
+                <button onClick={toggleNewExpense}>Add New Expense</button>
+            </div>
+        )
+    }
     return(
         <div className='new-expense'>
             <form onSubmit={submitHandler}>
@@ -81,6 +98,7 @@ const NewExpense = (props) => {
                 </div>
 
                 <div className="new-expense__actions">
+                    <button onClick={toggleNewExpense}>Cancel</button>
                     <button type="submit">Add Expense</button>
                 </div>
             </form>

@@ -6,8 +6,6 @@ const ExpensesFilter = (props) => {
 
     const yearFilterHandler = (event) => {
         props.onYearFilter(event.target.value)
-
-        console.log('EF.js year selected: ', event.target.value)
     }
     return (
         <div className='expenses-filter'>
