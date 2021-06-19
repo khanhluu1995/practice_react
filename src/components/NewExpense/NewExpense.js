@@ -53,7 +53,7 @@ const NewExpense = (props) => {
         event.preventDefault()
         const expenseData = {
             title: userInputs.enteredTitle,
-            price: userInputs.enteredPrice,
+            price: +userInputs.enteredPrice,
             date: new Date(userInputs.enteredDate)
         }
 
